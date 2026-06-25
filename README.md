@@ -101,5 +101,4 @@ distributes the computation across available CPU cores.
 
 ## Authors
 
-- PieR4y — https://github.com/PieR4y
 - Relmes Studios — https://github.com/RelmesStudios
