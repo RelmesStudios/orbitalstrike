@@ -9,7 +9,8 @@
 	],
 	"contact": {
 		"homepage": "https://github.com/RelmesStudios",
-		"sources": "https://github.com/RelmesStudios/orbitalstrike"
+		"sources": "https://github.com/RelmesStudios/orbitalstrike",
+		"patreon": "https://patreon.com/RelmesStudios"
 	},
 	"license": "Apache 2.0",
 	"icon": "assets/orbitalstrike/icon.png",
