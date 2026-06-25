@@ -1,0 +1,39 @@
+{
+	"schemaVersion": 1,
+	"id": "orbitalstrike",
+	"version": "${version}",
+	"name": "orbitalstrike",
+	"description": "This mod introduces the Orbital Strike Cannon as seen on the Unstable SMP.",
+	"authors": [
+		"PieR4y",
+		"Relmes Studios"
+	],
+	"contact": {
+		"homepage": "https://github.com/RelmesStudios",
+		"sources": "https://github.com/RelmesStudios/orbitalstrike"
+	},
+	"license": "Apache 2.0",
+	"icon": "assets/orbitalstrike/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"pier4y.orbitalstrike.Orbitalstrike"
+		],
+		"client": [
+			"pier4y.orbitalstrike.client.OrbitalstrikeClient"
+		]
+	},
+	"mixins": [
+		"orbitalstrike.mixins.json",
+		{
+			"config": "orbitalstrike.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.3",
+		"minecraft": ">=1.21.11",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}

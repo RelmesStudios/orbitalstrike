@@ -1,0 +1,73 @@
+plugins {
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
+	id 'maven-publish'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+repositories {
+}
+
+loom {
+	splitEnvironmentSourceSets()
+
+	mods {
+		"orbitalstrike" {
+			sourceSet sourceSets.main
+			sourceSet sourceSets.client
+		}
+	}
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+}
+
+processResources {
+	def version = project.version
+	inputs.property "version", version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": version
+	}
+}
+
+jar {
+	def projectName = project.name
+	inputs.property "projectName", projectName
+
+	from("LICENSE") {
+		rename { "${it}_$projectName"}
+	}
+}
+
+build.doLast {
+	def libsDir = layout.buildDirectory.dir('libs').get().asFile
+	def mainJar = libsDir.listFiles()?.find { f ->
+		f.name.endsWith('.jar') &&
+		!f.name.endsWith('-sources.jar') &&
+		!f.name.endsWith('-dev.jar') &&
+		f.name != "${project.name}.jar"
+	}
+	if (mainJar) {
+		copy {
+			from mainJar
+			into libsDir
+			rename { "${project.name}.jar" }
+		}
+		logger.lifecycle("Copied version-less jar: ${project.name}.jar")
+	}
+}
+
+publishing {
+	publications {
+		create("mavenJava", MavenPublication) {
+			from components.java
+		}
+	}
+	repositories {
+	}
+}
