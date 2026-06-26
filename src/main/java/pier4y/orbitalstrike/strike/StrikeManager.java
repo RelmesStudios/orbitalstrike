@@ -51,7 +51,7 @@ public class StrikeManager {
     };
 
     // Random misalignment applied to each TNT's radius (±half this value in blocks)
-    private static final float NUKE_MISALIGN_RANGE = 3.5f;
+    private static final float NUKE_MISALIGN_RANGE = 0.5f;
 
     // Height above target to spawn all nuke TNT
     private static final double NUKE_SPAWN_HEIGHT = 72.0;
